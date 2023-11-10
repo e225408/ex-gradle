@@ -15,8 +15,8 @@ class EnemyTest {
         for(int count=0; count<10; count++){
             demoHero.attack(slime); // over kill
         }
-        slime.attack(demoHero);
-        assertEquals(defaultHeroHp, demoHero.hitPoint);
+        slime.setAttack(demoHero);
+        assertEquals(defaultHeroHp, demoHero.getHitPoint());
 
     }
 }
