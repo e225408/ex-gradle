@@ -3,7 +3,7 @@ package jp.ac.uryukyu.ie.e225408;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class EnemyTest {
+class WarriorTest {
     /**
      * 倒れたはずの敵は攻撃できないことを検証。
      * 検証手順
@@ -13,12 +13,17 @@ class EnemyTest {
      * 　　つまり攻撃実行してもヒーローのHPは減っていないことを期待。これを検証する。
      */
     @Test
-    void attackTest() {
-        int defaultHeroHp = 100;
-        Hero demoHero = new Hero("デモ勇者", defaultHeroHp, 100);
+    void attackWithWeponSkillTest() {
+        int attack = 100;
+        Warrior demoWarrior = new Warrior("デモ戦士", 100, attack);
         Enemy slime = new Enemy("スライムもどき", 10, 100);
-        demoHero.attack(slime);
-        slime.attack(demoHero);
-        assertEquals(defaultHeroHp, demoHero.getHitPoint());
+        int weponSkillAttack = (int)(attack*1.5);
+        int nowEnemyHp;
+        for(int i = 0; i < 3; i++){
+            nowEnemyHp = slime.getHitPoint();
+            demoWarrior.attackWithWeponSkill(slime);
+            assertEquals(nowEnemyHp - weponSkillAttack, slime.getHitPoint());
+            System.out.printf("nowEnemyHp - weponSkillAttack = %s , slime.getHitPoint() = %s\n", nowEnemyHp - weponSkillAttack, slime.getHitPoint());
+        }
     }
 }
